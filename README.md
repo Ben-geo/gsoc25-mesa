@@ -16,6 +16,8 @@ The primary objective of this project was to implement a **robust and flexible d
 - **Model- and agent-level collection** to support both global and granular perspectives.  
 - **Event-driven collection**, ensuring only relevant data is gathered, thereby reducing overhead.  
 
+![](Mesa-Frames.jpg)
+
 
 
 ## Contributions :
