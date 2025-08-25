@@ -35,9 +35,9 @@ The primary objective of this project was to implement a **robust and flexible d
    - **Async Flush** chosen as default: fastest runtime + best CPU use, at cost of higher memory.  
 
 4. [Data Collector Enhancements [PR] (WIP)](https://github.com/projectmesa/mesa-frames/pull/167) 
-- Introduced **async flushing** to remove I/O bottlenecks and safely handle race conditions.  
-- Supported **multiple collects per step** by batching collections. 
-- Improved Code structure and Quality as well as introduced test cases
+    - Introduced **async flushing** to remove I/O bottlenecks and safely handle race conditions.  
+    - Supported **multiple collects per step** by batching collections. 
+    - Improved Code structure and Quality as well as introduced test cases
 
 
 ## Future Work
