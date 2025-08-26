@@ -31,7 +31,7 @@ The primary objective of this project was to implement a **robust and flexible d
     - Supported immediate and conditional collection for both model and agent data.  
     - Added persistence to local (CSV/Parquet), cloud (S3), and database (PostgreSQL) backends.  
     - Provided validation for inputs and schema integration for PostgreSQL.  
-3. [Benchmarking Concrete PR [discussion]](https://github.com/projectmesa/mesa-frames/discussions/168)
+3. [Benchmarking Datacollector implementation [discussion]](https://github.com/projectmesa/mesa-frames/discussions/168)
    - Benchmarked flush strategies (CSV, Parquet, memory, deferred, async) on Boltzmann Wealth Model (1M agents).  
    - Identified file writes as the main bottleneck.  
    - **Async Flush** chosen as default: fastest runtime + best CPU use, at cost of higher memory.  
