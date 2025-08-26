@@ -1,4 +1,4 @@
-# Data Collection Module for Mesa- Frames - Final Report Google Summer of Code 2025
+# Data Collection Module for Mesa- Frames - Final Report GSoC 2025
 
 ## Overview
 
