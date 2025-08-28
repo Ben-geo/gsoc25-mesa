@@ -70,6 +70,7 @@ This example:
 - Stores results as CSVs on disk (`./data`).  
 
 Note :
+
 We kept the usage as close to [Mesa Data Collector ](https://mesa.readthedocs.io/latest/tutorials/2_collecting_data.html) as possible, but added a few functionalities for large-scale workflows in Mesa-Frames:
 
 - Triggers → define conditions for automatic collection (e.g., every Nth step).
