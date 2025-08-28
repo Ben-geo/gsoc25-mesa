@@ -1,4 +1,4 @@
-# Data Collection Module for Mesa- Frames - Final Report GSoC 2025
+# Data Collection Module for `Mesa-Frames` - Final Report GSoC 2025
 
 ## Context
 [Project Mesa](https://github.com/projectmesa) Mesa is an open-source Python library for agent-based modeling, ideal for simulating complex systems and exploring emergent behaviors.
