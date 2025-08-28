@@ -102,9 +102,9 @@ The goal was to evaluate trade-offs between **execution time**, **memory usage**
 
 ### Plots  
 
-<img width="360" height="200" alt="boltzmann__time (2)" src="https://github.com/user-attachments/assets/18404e76-3981-4709-a363-be6adb877c51" />  
-<img width="360" height="200" alt="boltzmann__memory (2)" src="https://github.com/user-attachments/assets/98fa9d97-6f1c-4540-ae99-5f5a3bc8ab02" />  
-<img width="360" height="200" alt="boltzmann__cpu 2" src="https://github.com/user-attachments/assets/4d816c18-1695-47da-84b9-41e86f09d736" />  
+<img alt="boltzmann__time (2)" src="https://github.com/user-attachments/assets/18404e76-3981-4709-a363-be6adb877c51" />  
+<img alt="boltzmann__memory (2)" src="https://github.com/user-attachments/assets/98fa9d97-6f1c-4540-ae99-5f5a3bc8ab02" />  
+<img alt="boltzmann__cpu 2" src="https://github.com/user-attachments/assets/4d816c18-1695-47da-84b9-41e86f09d736" />  
 
 ### ✅ Conclusion  
 The chosen default is:  
