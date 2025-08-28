@@ -41,33 +41,42 @@ class ExampleModel(ModelDF):
     def __init__(self):
         super().__init__()
         self.agents = ExampleAgentSet1(self)
-
+        self.datacollector = DataCollector(
+            model=model,
+            model_reporters={"total_wealth": lambda m: m.agents["wealth"].sum()},
+            agent_reporters={"wealth": "wealth", "age": "age"},
+            storage="csv",
+            storage_uri="./data",
+            trigger=lambda m: m.schedule.steps % 2 == 0
+        )
     def step(self):
         self.agents.step()
 
 # Initialize model + DataCollector
 model = ExampleModel()
-model.dc = DataCollector(
-    model=model,
-    model_reporters={"total_wealth": lambda m: m.agents["wealth"].sum()},
-    agent_reporters={"wealth": "wealth", "age": "age"},
-    storage="csv",
-    storage_uri="./data"
-)
 
 # Run 3 steps with collection
 for _ in range(3):
     model.step()
-    model.dc.collect()
+    model.datacollector.collect()
 
 # Flush collected data to disk
-model.dc.flush()
+model.datacollector.flush()
 ```
 
 This example:  
 - Tracks model-level stats (`total_agents`).  
 - Tracks agent-level stats (`wealth`,`age`).  
 - Stores results as CSVs on disk (`./data`).  
+
+Note :
+We kept the usage as close to [Mesa Data Collector ](https://mesa.readthedocs.io/latest/tutorials/2_collecting_data.html) as possible, but added a few functionalities for large-scale workflows in Mesa-Frames:
+
+- Triggers → define conditions for automatic collection (e.g., every Nth step).
+- conditional_collect → manually trigger collection only when a condition is met.
+- Polars-backed agent sets → fast, vectorized operations.
+- Flexible backends → CSV, Parquet, S3, Postgres, with async flushing for performance.
+
 ---
 
 ## Performance Benchmarking  
