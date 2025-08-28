@@ -58,7 +58,7 @@ model = ExampleModel()
 # Run 3 steps with collection
 for _ in range(3):
     model.step()
-    model.datacollector.collect()
+    model.datacollector.conditional_collect()
 
 # Flush collected data to disk
 model.datacollector.flush()
