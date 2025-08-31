@@ -1,20 +1,22 @@
 # Data Collection Module for `Mesa-Frames` - Final Report GSoC 2025
 
 ## Context
+
 [Project Mesa](https://github.com/projectmesa) Mesa is an open-source Python library for agent-based modeling, ideal for simulating complex systems and exploring emergent behaviors.
 
 [Mesa-Frames](https://github.com/projectmesa/mesa-frames) extends Mesa to support large-scale simulations with thousands or even millions of agents. By storing agents in a DataFrame, Mesa-Frames enables vectorized operations, leading to significant improvements in scalability and computational efficiency, particularly when multiple agents are activated simultaneously.
 
 However, Mesa-Frames originally lacked a data collection module, which led to several difficulties for researchers. For example, data could only be accessed once a simulation had fully completed, making real-time analysis impossible. In addition, failures during execution often resulted in partial or complete loss of valuable data. These were among the issues that motivated the development of a dedicated data collection system in this project.
 
-
 ## GSoC 2025 Goals
+
 The primary objective of this project was to implement a **robust and flexible data collection system for Mesa-Frames** with the following features:  
+
 - **Multiple storage backends** (local files, cloud, and databases).  
 - **Model- and agent-level collection** to support both global and granular perspectives.  
 - **Event-driven collection**, ensuring only relevant data is gathered, thereby reducing overhead.  
 
-![](Mesa-Frames.jpg)
+![Concept](Mesa-Frames.jpg)
 
 ## Usage Example  
 
@@ -65,13 +67,14 @@ model.datacollector.flush()
 ```
 
 This example:  
+
 - Tracks model-level stats (`total_agents`).  
 - Tracks agent-level stats (`wealth`,`age`).  
 - Stores results as CSVs on disk (`./data`).  
 
 Note :
 
-We kept the usage as close to [Mesa Data Collector ](https://mesa.readthedocs.io/latest/tutorials/2_collecting_data.html) as possible, but added a few functionalities for large-scale workflows in Mesa-Frames:
+We kept the usage as close to [Mesa Data Collector](https://mesa.readthedocs.io/latest/tutorials/2_collecting_data.html) as possible, but added a few functionalities for large-scale workflows in Mesa-Frames:
 
 - Triggers → define conditions for automatic collection (e.g., every Nth step).
 - conditional_collect → manually trigger collection only when a condition is met.
@@ -86,6 +89,7 @@ We benchmarked different data collection + flushing strategies on the **Boltzman
 The goal was to evaluate trade-offs between **execution time**, **memory usage**, and **CPU utilization**.  
 
 ### Strategies Compared  
+
 - **mesa-frames (pl native)**: baseline run without data collection.  
 - **Every step → CSV (immediate flush)**.  
 - **Every 10th step → CSV (immediate flush)**.  
@@ -98,15 +102,18 @@ The goal was to evaluate trade-offs between **execution time**, **memory usage**
 ### Results  
 
 #### Execution Time  
+
 - **Async Flush** was the fastest while still persisting data.  
 - **Every step CSV** was the slowest due to constant I/O.  
 - **In-memory only** nearly matched the baseline, confirming file writes as the main bottleneck.  
 
 #### Memory Usage  
+
 - **Async Flush** and **Deferred Flush (concatenated)** used the most memory.  
 - All strategies showed a memory dip around ~700k agents (seen consistently in tests).  
 
 #### CPU Utilization  
+
 - **Async Flush** kept the CPU busy (no idle time).  
 - **Deferred flush** left CPU underutilized.  
 
@@ -117,25 +124,26 @@ The goal was to evaluate trade-offs between **execution time**, **memory usage**
 <img alt="boltzmann__cpu 2" src="https://github.com/user-attachments/assets/4d816c18-1695-47da-84b9-41e86f09d736" />  
 
 ### ✅ Conclusion  
-The chosen default is:  
 
+The chosen default is:  
 ➡️ **`mesa-frames (pl native) with data collector – Async Flush`**  
 
 Despite higher memory usage, it provides:  
+
 - **Best runtime performance**  
 - **Efficient CPU utilization**  
 - **Scalability to millions of agents**  
 
 ---
 
+## Contributions
 
-## Contributions :
-1. [Abstract Data Collector [PR]](https://github.com/projectmesa/mesa-frames/pull/156) 
+1. [Abstract Data Collector [PR]](https://github.com/projectmesa/mesa-frames/pull/156)
     - Defined a standardized interface for collecting model- and agent-level data.  
     - Added support for reporter functions, conditional triggers, and asynchronous flushing.  
     - Established pluggable storage backends (memory, CSV, Parquet, S3, PostgreSQL) as extension points.  
 
-2. [Concrete Data Collector [PR]](https://github.com/projectmesa/mesa-frames/pull/161) 
+2. [Concrete Data Collector [PR]](https://github.com/projectmesa/mesa-frames/pull/161)
     - Collected data via lazy Polars pipelines for efficiency.  
     - Supported immediate and conditional collection for both model and agent data.  
     - Added persistence to local (CSV/Parquet), cloud (S3), and database (PostgreSQL) backends.  
@@ -145,21 +153,29 @@ Despite higher memory usage, it provides:
    - Identified file writes as the main bottleneck.  
    - **Async Flush** chosen as default: fastest runtime + best CPU use, at cost of higher memory.  
 
-4. [Data Collector Enhancements [PR] (WIP)](https://github.com/projectmesa/mesa-frames/pull/167) 
+4. [Data Collector Enhancements [PR]](https://github.com/projectmesa/mesa-frames/pull/167)
     - Introduced **async flushing** to remove I/O bottlenecks and safely handle race conditions.  
-    - Supported **multiple collects per step** by batching collections. 
+    - Supported **multiple collects per step** by batching collections.
     - Improved Code structure and Quality as well as introduced test cases
 
+5. [Data Collector Documentation [PR]](https://github.com/projectmesa/mesa-frames/pull/173)
+    - Added comprehensive documentation for the new DataCollector.
+    - Extended user guide with a dedicated tutorial (4_datacollector.ipynb) covering CSV, Parquet, S3, PostgreSQL backends.
+    - Updated class docs (1_classes.md) and introductory tutorial to include DataCollector usage.
+    - Integrated into mkdocs navigation for better discoverability.
 
 ## Future Work
+
 - Extend and refine documentation for broader adoption.  
 - Test the data collector with additional, diverse Mesa-Frames examples.  
 - Incorporate further edge-case testing to guarantee reliability under extreme conditions.  
 
-
 ## Challenges
+
 The most demanding aspect of the project lay in **design decisions rather than coding**. Considerable time was invested in comparing alternative architectures and selecting the most efficient and scalable solutions.  
 
-
 ## Acknowledgement
-- [Adam](https://github.com/adamamer20) for collaborating on the design discussions and contributing to the decision-making process, which helped shape the data collector into a more robust and scalable module.
+
+- [Adam](https://github.com/adamamer20) for being an incredible collaborator throughout this project. His insights during design discussions, willingness to challenge assumptions, and thoughtful contributions to the decision-making process were instrumental in shaping the Data Collector into a more robust and scalable module. Beyond the technical work, his encouragement made this GSoC journey far more rewarding.
+- [Project Mesa maintainers](https://github.com/orgs/projectmesa/people) for fostering an open, collaborative environment that made development smooth and impactful.
+- [Google](https://www.google.com) for supporting this journey and providing a platform that empowers contributors like me to work on meaningful open-source projects and give back to the community.
