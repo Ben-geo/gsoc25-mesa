@@ -174,6 +174,10 @@ Despite higher memory usage, it provides:
 
 The most demanding aspect of the project lay in **design decisions rather than coding**. Considerable time was invested in comparing alternative architectures and selecting the most efficient and scalable solutions.  
 
+## Certificate
+
+<img width="1021" height="641" alt="image" src="https://github.com/user-attachments/assets/a2e535c5-ef47-4aa7-9703-168038b2fbff" />
+
 ## Acknowledgement
 
 - [Adam](https://github.com/adamamer20) for being an incredible collaborator throughout this project. His insights during design discussions, willingness to challenge assumptions, and thoughtful contributions to the decision-making process were instrumental in shaping the Data Collector into a more robust and scalable module. Beyond the technical work, his encouragement made this GSoC journey far more rewarding.
