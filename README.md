@@ -181,5 +181,5 @@ The most demanding aspect of the project lay in **design decisions rather than c
 ## Acknowledgement
 
 - [Adam](https://github.com/adamamer20) for being an incredible collaborator throughout this project. His insights during design discussions, willingness to challenge assumptions, and thoughtful contributions to the decision-making process were instrumental in shaping the Data Collector into a more robust and scalable module. Beyond the technical work, his encouragement made this GSoC journey far more rewarding.
-- [Project Mesa Maintainers](https://github.com/orgs/projectmesa/people) for fostering an open, collaborative environment that made development smooth and impactful.
+- [Project Mesa Maintainers](https://github.com/orgs/mesa/people) for fostering an open, collaborative environment that made development smooth and impactful.
 - [Google](https://github.com/google) for supporting this journey and providing a platform that empowers contributors like me to work on meaningful open-source projects and give back to the community.
