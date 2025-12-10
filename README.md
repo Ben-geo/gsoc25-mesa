@@ -2,9 +2,9 @@
 
 ## Context
 
-[Project Mesa](https://github.com/projectmesa) Mesa is an open-source Python library for agent-based modeling, ideal for simulating complex systems and exploring emergent behaviors.
+[Project Mesa](https://github.com/mesa) Mesa is an open-source Python library for agent-based modeling, ideal for simulating complex systems and exploring emergent behaviors.
 
-[Mesa-Frames](https://github.com/projectmesa/mesa-frames) extends Mesa to support large-scale simulations with thousands or even millions of agents. By storing agents in a DataFrame, Mesa-Frames enables vectorized operations, leading to significant improvements in scalability and computational efficiency, particularly when multiple agents are activated simultaneously.
+[Mesa-Frames](https://github.com/mesa/mesa-frames) extends Mesa to support large-scale simulations with thousands or even millions of agents. By storing agents in a DataFrame, Mesa-Frames enables vectorized operations, leading to significant improvements in scalability and computational efficiency, particularly when multiple agents are activated simultaneously.
 
 However, Mesa-Frames originally lacked a data collection module, which led to several difficulties for researchers. For example, data could only be accessed once a simulation had fully completed, making real-time analysis impossible. In addition, failures during execution often resulted in partial or complete loss of valuable data. These were among the issues that motivated the development of a dedicated data collection system in this project.
 
