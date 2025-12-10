@@ -138,27 +138,27 @@ Despite higher memory usage, it provides:
 
 ## Contributions
 
-1. [Abstract Data Collector [PR]](https://github.com/projectmesa/mesa-frames/pull/156)
+1. [Abstract Data Collector [PR]](https://github.com/mesa/mesa-frames/pull/156)
     - Defined a standardized interface for collecting model- and agent-level data.  
     - Added support for reporter functions, conditional triggers, and asynchronous flushing.  
     - Established pluggable storage backends (memory, CSV, Parquet, S3, PostgreSQL) as extension points.  
 
-2. [Concrete Data Collector [PR]](https://github.com/projectmesa/mesa-frames/pull/161)
+2. [Concrete Data Collector [PR]](https://github.com/mesa/mesa-frames/pull/161)
     - Collected data via lazy Polars pipelines for efficiency.  
     - Supported immediate and conditional collection for both model and agent data.  
     - Added persistence to local (CSV/Parquet), cloud (S3), and database (PostgreSQL) backends.  
     - Provided validation for inputs and schema integration for PostgreSQL.  
-3. [Benchmarking Datacollector implementation [discussion]](https://github.com/projectmesa/mesa-frames/discussions/168)
+3. [Benchmarking Datacollector implementation [discussion]](https://github.com/mesa/mesa-frames/discussions/168)
    - Benchmarked flush strategies (CSV, Parquet, memory, deferred, async) on Boltzmann Wealth Model (1M agents).  
    - Identified file writes as the main bottleneck.  
    - **Async Flush** chosen as default: fastest runtime + best CPU use, at cost of higher memory.  
 
-4. [Data Collector Enhancements [PR]](https://github.com/projectmesa/mesa-frames/pull/167)
+4. [Data Collector Enhancements [PR]](https://github.com/mesa/mesa-frames/pull/167)
     - Introduced **async flushing** to remove I/O bottlenecks and safely handle race conditions.  
     - Supported **multiple collects per step** by batching collections.
     - Improved Code structure and Quality as well as introduced test cases
 
-5. [Data Collector Documentation [PR]](https://github.com/projectmesa/mesa-frames/pull/173)
+5. [Data Collector Documentation [PR]](https://github.com/mesa/mesa-frames/pull/173)
     - Added comprehensive documentation for the new DataCollector.
     - Extended user guide with a dedicated tutorial (4_datacollector.ipynb) covering CSV, Parquet, S3, PostgreSQL backends.
     - Updated class docs (1_classes.md) and introductory tutorial to include DataCollector usage.
