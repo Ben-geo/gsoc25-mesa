@@ -2,7 +2,7 @@
 
 ## Context
 
-[Project Mesa](https://github.com/mesa) Mesa is an open-source Python library for agent-based modeling, ideal for simulating complex systems and exploring emergent behaviors.
+[Mesa](https://github.com/mesa) Mesa is an open-source Python library for agent-based modeling, ideal for simulating complex systems and exploring emergent behaviors.
 
 [Mesa-Frames](https://github.com/mesa/mesa-frames) extends Mesa to support large-scale simulations with thousands or even millions of agents. By storing agents in a DataFrame, Mesa-Frames enables vectorized operations, leading to significant improvements in scalability and computational efficiency, particularly when multiple agents are activated simultaneously.
 
